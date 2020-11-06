@@ -21,6 +21,8 @@ data <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_stre
 dataF <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)    
 ```
 
+##model1
+
 Scatterplot SIMS is a function of ARM
 ```{r}
 plot(SIMS~ARM, data=dataF)
@@ -44,6 +46,8 @@ summary.lm(model.1)
 ```
 This is a linear model of SIMS based on ARM strength. The adjusted rsquare is equal to 8.467
 
+##model2
+
 Scatterplot SIMS is a function of GRIP
 ```{r}
 plot(SIMS~GRIP, data=dataF)
@@ -62,6 +66,6 @@ basicNN + geom_point() + geom_smooth(method=lm)
 ```
 
 ```{r}
-model.1=lm(SIMS~GRIP,data=dataF)
-summary.lm(model.1)
+model.2=lm(SIMS~GRIP,data=dataF)
+summary.lm(model.2)
 ```
