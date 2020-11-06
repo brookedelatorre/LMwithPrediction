@@ -7,11 +7,61 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(tigerstats)
 ```
 
 ## Introduction
-This is the linear model with prediction problem, predict strength scores using data from the following website.
+We are using a linear model to predict a stimulated strength score based on arm strength and or grip strength. 
 
 ```{r}
-data <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="", header=TRUE)  
+data <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)    
+```
+```{r}
+dataF <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)    
+```
+
+Scatterplot SIMS is a function of ARM
+```{r}
+plot(SIMS~ARM, data=dataF)
+```
+
+##Now with ggplot - first select the basic data
+
+```{r}
+basicNN <- ggplot(dataF,aes(y=SIMS,x=ARM))
+```
+
+##Now add in scatterplot
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+```
+
+```{r}
+model.1=lm(SIMS~ARM,data=dataF)
+summary.lm(model.1)
+```
+This is a linear model of SIMS based on ARM strength. The adjusted rsquare is equal to 8.467
+
+Scatterplot SIMS is a function of GRIP
+```{r}
+plot(SIMS~GRIP, data=dataF)
+```
+
+##Now with ggplot - first select the basic data
+
+```{r}
+basicNN <- ggplot(dataF,aes(y=SIMS,x=GRIP))
+```
+
+##Now add in scatterplot
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+```
+
+```{r}
+model.1=lm(SIMS~GRIP,data=dataF)
+summary.lm(model.1)
 ```
