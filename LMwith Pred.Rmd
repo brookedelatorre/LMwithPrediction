@@ -69,3 +69,13 @@ basicNN + geom_point() + geom_smooth(method=lm)
 model.2=lm(SIMS~GRIP,data=dataF)
 summary.lm(model.2)
 ```
+
+This is a linear model of SIMS based on GRIP strength. The adjusted R-squared is equal to 0.4853. In this case model 1 is better than model 2 because the bigger R-squared. 
+
+##model3
+SIMS is a function of GRIP and ARM strength
+```{r}
+model.3<-lm(SIMS~GRIP + ARM, data = dataF)
+summary.lm(model.3)
+```
+The adjusted R-Square for model 3 is 0.5358 so it is bigger than the model based on ARM.
