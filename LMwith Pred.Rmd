@@ -27,6 +27,12 @@ Scatterplot SIMS is a function of ARM
 ```{r}
 plot(SIMS~ARM, data=dataF)
 ```
+```{r}
+model.1=lm(SIMS~ARM,data=dataF)
+summary.lm(model.1)
+new=data.frame(ARM=88,GRIP=94)
+predict(model.1,interval="prediction")
+```
 
 ##Now with ggplot - first select the basic data
 
@@ -52,7 +58,11 @@ Scatterplot SIMS is a function of GRIP
 ```{r}
 plot(SIMS~GRIP, data=dataF)
 ```
-
+```{r}
+model.2=lm(SIMS~ARM,data=dataF)
+summary.lm(model.2)
+predict(model.2,interval="prediction")
+```
 ##Now with ggplot - first select the basic data
 
 ```{r}
@@ -79,3 +89,13 @@ model.3<-lm(SIMS~GRIP + ARM, data = dataF)
 summary.lm(model.3)
 ```
 The adjusted R-Square for model 3 is 0.5358 so it is bigger than the model based on ARM.
+
+```{r}
+model.3=lm(SIMS~ARM,data=dataF)
+summary.lm(model.3)
+predict(model.3,interval="prediction")
+```
+```{r}
+anova(model.1,model.3)
+```
+The p value is 0.00000499 this is less than0.05 so we reject the null hypothesis and conclude that model 3 is better than model 1. 
